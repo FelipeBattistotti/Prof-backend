@@ -1,0 +1,11 @@
+{
+  "name": "Prof-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/FelipeBattistotti/Prof-backend.git",
+  "author": "felipebattistotti <feligatti@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
