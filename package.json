@@ -14,8 +14,10 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "knex": "^0.21.5-next2",
+    "nodemailer": "^6.4.11",
     "pg": "^8.3.0"
   }
 }
