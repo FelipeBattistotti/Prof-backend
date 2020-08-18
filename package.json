@@ -6,7 +6,8 @@
   "author": "felipebattistotti <feligatti@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "test": "tsnd --transpile-only --ignore-watch node_modules --respawn cross-env NODE_ENV=test jest"
   },
   "devDependencies": {
     "@types/express": "^4.17.7",
@@ -16,7 +17,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "knex": "^0.21.5-next2",
+    "knex": "^0.21.5",
     "nodemailer": "^6.4.11",
     "pg": "^8.3.0"
   }
