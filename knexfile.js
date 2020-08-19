@@ -12,12 +12,7 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: {
-        host : '127.0.0.1',
-        user : 'admin',
-        password : 'admin',
-        database : 'test-prof-app'
-    },
+    connection: process.env.TEST_DB_URL,
     migrations: {
       directory: './src/database/migrations'
     },
