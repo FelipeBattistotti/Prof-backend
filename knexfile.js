@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
 
   development: {
-    client: 'pg',
+    client: 'mssql',
     connection: process.env.DB_URL,
     migrations: {
       directory: './src/database/migrations'
@@ -11,7 +11,7 @@ module.exports = {
   },
 
   test: {
-    client: 'pg',
+    client: 'mssql',
     connection: process.env.TEST_DB_URL,
     migrations: {
       directory: './src/database/migrations'
