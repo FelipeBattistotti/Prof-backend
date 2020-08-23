@@ -14,7 +14,45 @@ interface ScheduleItem {
 class ClassesController {
 
     async index (request: Request, response: Response) {
-        
+        const filters = request.query;
+
+        console.log('FELIPE AQUI 1');
+        console.log(request.query);
+
+        const week_day = filters.week_day as string;
+        const subject = filters.subject as string;
+        const time = filters.time as string;
+
+        console.log('FELIPE AQUI 2');
+        console.log(filters.week_day);
+        console.log(filters.subject);
+        console.log(filters.time);
+        console.log(week_day);
+        console.log(subject);
+        console.log(time);
+
+        if (!week_day || !subject || !time) {
+            return response.status(400).json({
+                error: 'É necessário informar os filtros para a busca das Aulas'
+            });
+        }
+
+        const timeInMinutes = convertHourToMinutes(time);
+
+        console.log(timeInMinutes);
+
+        const classes = await connection('classes')
+                              .whereExists(function () {
+                                  this.select('class_schedule.*')
+                                    .from('class_schedule')
+                                    .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
+                                    .whereRaw('`class_schedule`.`week_day` = ??', [Number(week_day)])
+                              })
+                              .where('classes.subject', '=', subject)
+                              .join('user', 'classes.user_id', '=', 'user.id')
+                              .select(['classes.*', 'user.*']);
+
+        return response.json(classes);
     };
 
     async create (request: Request, response: Response) {
