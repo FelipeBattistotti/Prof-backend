@@ -13,6 +13,10 @@ interface ScheduleItem {
 
 class ClassesController {
 
+    async index (request: Request, response: Response) {
+        
+    };
+
     async create (request: Request, response: Response) {
         let id: string;
     
