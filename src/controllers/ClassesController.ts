@@ -34,6 +34,8 @@ class ClassesController {
                                     .from('class_schedule')
                                     .whereRaw('class_schedule.class_id = classes.id')
                                     .whereRaw('class_schedule.week_day = ?', [Number(week_day)])
+                                    .andWhere('class_schedule.from', '<=', timeInMinutes)
+                                    .andWhere('class_schedule.to', '>', timeInMinutes)
                               })
                               .where('classes.subject', '=', subject)
                               .join('user', 'classes.user_id', '=', 'user.id')
