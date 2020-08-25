@@ -17,6 +17,11 @@ routes.get('/classes', classesController.index);
 routes.post('/classes', classesController.create);
 
 /**
+ * GET connection
+ */
+routes.get('/connection', connectionController.index);
+
+/**
  * CREATE connection
  */
 routes.post('/connection', connectionController.create);

@@ -2,12 +2,15 @@ import { Request, Response } from 'express';
 
 import connection from '../database/connection';
 import generateUniqueId from '../utils/generateUniqueId';
-import Knex from 'knex';
 
 class ConnectionController {
 
     async index (request: Request, response: Response) {
-        
+        const totalConnections = await connection('connection').count('* as total');
+
+        const { total } = totalConnections[0];
+
+        return response.json({ total });
     };
 
     async create (request: Request, response: Response) {
