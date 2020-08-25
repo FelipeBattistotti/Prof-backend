@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 
 import connection from '../database/connection';
+import generateUniqueId from '../utils/generateUniqueId';
+import Knex from 'knex';
 
 class ConnectionController {
 
@@ -9,9 +11,16 @@ class ConnectionController {
     };
 
     async create (request: Request, response: Response) {
-        const { user_id } = request.body;
+
+        const id: string = generateUniqueId();
+
+        const created_at = connection.fn.now();
+
+        const user_id: string = request.body.user_id;
 
         await connection('connection').insert({
+            id,
+            created_at,
             user_id,
         });
 
