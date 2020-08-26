@@ -21,6 +21,15 @@ class ConnectionController {
 
         const user_id: string = request.body.user_id;
 
+        const user = await connection('user')
+                .where('user.id', user_id)
+                .select('*')
+                .first();
+
+        if (user === undefined) {
+            return response.status(401).json({ error: 'Usuário não encontrado!' });
+        }
+
         await connection('connection').insert({
             id,
             created_at,
