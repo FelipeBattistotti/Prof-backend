@@ -39,7 +39,16 @@ class ClassesController {
                               })
                               .where('classes.subject', '=', subject)
                               .join('user', 'classes.user_id', '=', 'user.id')
-                              .select(['classes.*', 'user.*']);
+                              .select(['user.id',
+                                       'user.name',
+                                       'user.email',
+                                       'user.pwd',
+                                       'user.avatar',
+                                       'user.whatsapp',
+                                       'user.bio',
+                                       'classes.subject',
+                                       'classes.cost'
+                                     ]);
 
         return response.json(classes);
     };
