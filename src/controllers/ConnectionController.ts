@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import connection from '../database/connection';
 import generateUniqueId from '../utils/generateUniqueId';
+import sendEmail from './../utils/sendEmail';
 
 class ConnectionController {
 
@@ -9,6 +10,8 @@ class ConnectionController {
         const totalConnections = await connection('connection').count('* as total');
 
         const { total } = totalConnections[0];
+
+        sendEmail('O sistema foi acessado.');
 
         return response.json({ total });
     };

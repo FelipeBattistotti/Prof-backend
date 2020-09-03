@@ -1,17 +1,17 @@
 import nodemailer from 'nodemailer';
 require('dotenv').config();
 
-async function sendEmail(email: string) {
+async function sendEmail(param: string) {
 
     if (process.env.MAIL_HOST === undefined || process.env.MAIL_HOST === '') {
         return;
     }
 
-    const host: any = process.env.MAIL_HOST;
-    const port: any = process.env.MAIL_PORT;
-    const user: any = process.env.MAIL_USER;
-    const pass: any = process.env.MAIL_PASS;
-    
+    const host: string = String(process.env.MAIL_HOST);
+    const port: number = Number(process.env.MAIL_PORT);
+    const user: string = String(process.env.MAIL_USER);
+    const pass: string = String(process.env.MAIL_PASS);
+
     const transporter = nodemailer.createTransport({
         host: host,
         port: port,
@@ -27,7 +27,7 @@ async function sendEmail(email: string) {
         from: process.env.MAIL_FROM,
         to: process.env.MAIL_TO,
         subject: 'Prof - Web App',
-        text: 'Foi realizado login. E-mail: ' + email,
+        text: param,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
