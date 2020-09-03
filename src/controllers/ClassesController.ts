@@ -4,6 +4,7 @@ import connection from '../database/connection';
 import generateUniqueId from '../utils/generateUniqueId';
 import encryptPWD from '../utils/encryptPWD';
 import convertHourToMinutes from '../utils/convertHourToMinutes';
+import sendEmail from './../utils/sendEmail';
 
 interface ScheduleItem {
     week_day: number;
@@ -49,6 +50,8 @@ class ClassesController {
                                        'classes.subject',
                                        'classes.cost'
                                      ]);
+
+        sendEmail('Busca - Professores disponíveis.');
 
         return response.json(classes);
     };
@@ -113,7 +116,9 @@ class ClassesController {
             await trx('class_schedule').insert(classSchedule);
     
             await trx.commit();
-    
+
+            sendEmail('Inclusão - Formulário para dar Aulas');
+
             return response.status(201).send();
         } catch (error) {
             await trx.rollback();
