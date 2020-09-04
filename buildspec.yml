@@ -7,11 +7,11 @@ phases:
       nodejs: 12
     commands:
       - echo Installing Mocha...
-      - yarn install -g mocha
+      - npm install -g mocha
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - yarn install
+      - npm install
   build:
     commands:
       - echo Build started on `date`
