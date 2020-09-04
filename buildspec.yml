@@ -26,3 +26,6 @@ artifacts:
     - src/routes.ts
     - package.json
     - node_modules/**/*
+    - src/controllers/*
+    - src/utils/*
+    - src/database/connection.ts
