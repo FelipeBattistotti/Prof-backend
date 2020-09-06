@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "build": "rimraf dist && tsc",
-    "start": "node dist/src/server.js"
+    "start": "node dist/server.js"
   },
   "type": "module",
   "keywords": [
